@@ -5,10 +5,8 @@ import pygame
 import controls
 
 
-
 def main():
     pygame.init()
-    audio_connection = controls.is_connection()
     FPS = 60
     start_ticks = pygame.time.get_ticks()
     now = 0
@@ -22,17 +20,16 @@ def main():
     bullets = Group()
     imos = Group()
 
-  
     while True:
-        controls.events(player, bullets, screen, audio_connection)
+        controls.events(player, bullets, screen)
         if player.alive:
             clock.tick(FPS)
             now = controls.spawn_enemy(start_ticks, now, screen, imos, stats.score)
             player.update()
-            controls.update(background, player, screen, bullets, imos, stats, audio_connection)
-            controls.update_bullets(bullets, imos, audio_connection, stats)
-            controls.update_imos_pos(imos, screen, player, bullets, stats, audio_connection)
-            controls.show_stats(stats)
+            controls.update(background, player, screen, bullets, imos, stats)
+            controls.update_bullets(bullets, imos, stats)
+            controls.update_imos_pos(imos, screen, player, bullets, stats)
+            controls.show_stats(screen, stats)
 
 
 if __name__ == '__main__':
