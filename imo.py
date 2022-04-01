@@ -3,10 +3,10 @@ import pygame
 
 class Imo(pygame.sprite.Sprite):
 
-    def __init__(self, screen, audio_connection):
+    def __init__(self, screen, deaths):
         super(Imo, self).__init__()
         self.screen = screen
-        self.audio_connection = audio_connection
+        self.speed = deaths / 30
         self.image = pygame.image.load('img/imo2.1.png')
         self.rect = self.image.get_rect()
         self.rect.x = self.rect.width
@@ -19,9 +19,5 @@ class Imo(pygame.sprite.Sprite):
         self.screen.blit(self.image, self.rect)
 
     def update(self):
-        self.y += 1.1 
+        self.y += 1.1 + self.speed
         self.rect.y = self.y
-    
-    def __del__(self):
-        if self.audio_connection:
-            pygame.mixer.Sound("sounds/shot2.wav").play()

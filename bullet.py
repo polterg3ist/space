@@ -9,8 +9,8 @@ class Bullet(pygame.sprite.Sprite):
         self.rect = pygame.Rect(0, 0, 2, 12)
         self.color = 240, 14, 14
         self.speed = 6.5
-        self.rect.centerx = player.ship_rect.centerx
-        self.rect.top = player.ship_rect.top
+        self.rect.centerx = player.rect.centerx
+        self.rect.top = player.rect.top
         self.position = float(self.rect.y)
 
     def update(self):
