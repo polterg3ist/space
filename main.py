@@ -29,7 +29,6 @@ def main():
             controls.update(background, player, screen, bullets, imos, stats)
             controls.update_bullets(bullets, imos, stats)
             controls.update_imos_pos(imos, screen, player, bullets, stats)
-            controls.show_stats(screen, stats)
 
 
 if __name__ == '__main__':

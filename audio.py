@@ -1,7 +1,7 @@
 import pygame
 
 pygame.init()
-volume = 0.1
+volume = 0.1 
 
 
 def is_connection():

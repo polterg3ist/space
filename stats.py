@@ -8,7 +8,7 @@ def get_best_score():
     else:
         with open("space_save.txt", 'w+'):
             sc = 0
-    return sc
+    return sc if sc or sc == 0 else 0
 
 
 class Stat:

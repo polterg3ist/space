@@ -1,3 +1,5 @@
+from re import A
+from winreg import KEY_ALL_ACCESS
 import pygame
 import audio
 import texts
@@ -33,6 +35,14 @@ def events(player, bullets, screen):
                     new_bullet = Bullet(screen, player)
                     bullets.add(new_bullet)
                     play_sound("sounds/shot3.wav")
+                elif event.key == pygame.K_UP:
+                    if audio.volume <= 1:
+                        audio.volume += 0.1
+                    print(audio.volume)
+                elif event.key == pygame.K_DOWN:
+                    if audio.volume > 0.1:
+                        audio.volume -= 0.1
+                    print(audio.volume)
 
             elif event.type == pygame.KEYUP:
                 # stop turbo
@@ -49,6 +59,7 @@ def events(player, bullets, screen):
 def update(background, player, screen, bullets, imos, stats):
     """Updating screen"""
     screen.blit(background, (0, 0))
+    show_stats(screen, stats)
     for bullet in bullets.sprites():
         bullet.draw()
     player.output()
@@ -92,6 +103,7 @@ def plr_death(screen, player, imos, bullets, stats):
     texts.print_text(screen, 'Earned Score', stats)
     stats.score = 0
     pygame.display.flip()
+    pygame.time.delay(1000)
        
 
 def play_sound(path):
@@ -125,5 +137,4 @@ def spawn_enemy(start_ticks, now, screen, imos, deaths):
 
 def show_stats(screen, stats):
     texts.print_text(screen, "scores", stats)
-    pygame.display.flip()
 
